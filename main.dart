@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste/screens/characterlist.dart';
 
 void main() {
   runApp(MaterialApp(home: TelaInicial()));
@@ -12,7 +13,12 @@ class TelaInicial extends StatelessWidget {
       body: ListView(
         children: [
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Characterlist()),
+              );
+            },
             child: CircleAvatar(
               child: Image.asset("images/characters.png"),
               radius: 80,

@@ -1,10 +1,21 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:teste/model/character.dart';
 
 class Characterlist extends StatelessWidget {
 
-  void pageData() {
-    final response = http.get(Uri.parse("https://rickandmortyapi.com/api/character"));
+ Future<List<Character>> pageData() async {
+    final response = await http.get(
+      Uri.parse("https://rickandmortyapi.com/api/character?page=1"),
+    );
+
+    if(response.statusCode == 200) {
+      return CharacterResponse.fromJson(json.decode(response.body)).results;
+    } else {
+      throw Exception("faiou");
+    }
   }
 
   @override
